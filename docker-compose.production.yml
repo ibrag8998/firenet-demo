@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  app:
+    build: app
+    restart: always
+    environment:
+      - VIRTUAL_HOST=localhost
+    volumes:
+      - ./app:/app  # only for debugging purposes
+  nginx-proxy:
+    restart: always
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+    volumes:
+      - nginx-certs:/etc/nginx/certs:ro
+      - nginx-dhparam:/etc/nginx/dhparam
+      - nginx-html:/usr/share/nginx/html
+      - nginx-vhost:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx.conf:/etc/nginx/conf.d/custom_proxy_settings.conf
+
+volumes:
+  nginx-certs:
+  nginx-dhparam:
+  nginx-html:
+  nginx-vhost:
