@@ -5,7 +5,7 @@ services:
     build: app
     restart: always
     environment:
-      - VIRTUAL_HOST=localhost
+      - VIRTUAL_HOST=194.67.116.20
   nginx-proxy:
     restart: always
     build: nginx-proxy
