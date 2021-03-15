@@ -24,6 +24,9 @@ def render_index(state='index'):
 
 
 def detect_fire(filename: str):
+    """
+    The algorithm's author's telegram: @TDSbu
+    """
     video = cv2.VideoCapture(filename)
 
     is_detected = False
